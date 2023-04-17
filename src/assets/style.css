@@ -152,8 +152,8 @@ body {
   backdrop-filter: brightness(0.7);
 }
 .code-hole.covered {
-  // background: url("../img/secret.png");
-  // background-size: contain;
+  /* background: url("../img/secret.png");
+  background-size: contain; */
 }
 
 .guess-hole {
