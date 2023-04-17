@@ -20,4 +20,12 @@ then open your browser at **http://localhost:5173**
 ```
 npm run build
 ```
+
+then run your server pointing to the **dist** folder, e.g.
+
+```
+php -S localhost:8000 -t ./dist
+```
+and open your browser at **http://localhost:8000**
+
 [1]: https://retami.github.io
