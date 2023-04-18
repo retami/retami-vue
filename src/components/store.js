@@ -25,7 +25,6 @@ export const store = reactive({
     infoVisible: true,
     checkVisible: false,
 
-    hintVisible: true,
     guessesVisible: true,
 
     secret: Secret,
@@ -68,7 +67,6 @@ export const store = reactive({
         this.quitVisible = (state === 'playing' || state === 'end');
         this.quitEnabled = (state === 'playing');
         this.checkVisible = (state === 'playing');
-        this.hintVisible = true; //(state === 'playing');
         this.infoVisible = (state === 'playing' || state === 'end');
     },
 
