@@ -18,14 +18,13 @@ export const store = reactive({
     state: 'initial',
 
     startVisible: true,
-    optionsEnabled: true,
     quitVisible: false,
-    quitEnabled: true,
-
     infoVisible: true,
     checkVisible: false,
-
     guessesVisible: true,
+
+    quitEnabled: true,
+    optionsEnabled: true,
 
     secret: Secret,
     secretRow: [],
@@ -102,11 +101,14 @@ export const store = reactive({
     },
 
     showHint() {
-        let candidateIndices = this.secretRow.
-                map((color, index) => color === 'black' ? index : null).
-                filter(index => index !== null);
-        let randomIndex = Math.floor(Math.random() * candidateIndices.length);
-        this.secretRow[candidateIndices[randomIndex]] = this.secret.get()[candidateIndices[randomIndex]];
+        const candidateIndices = this.secretRow.reduce((indices, color, index) => {
+            if (color === 'black') indices.push(index);
+            return indices;
+        }, []);
+
+        const randomCandidateIndex = Math.floor(Math.random() * candidateIndices.length);
+        const randomIndex = candidateIndices[randomCandidateIndex];
+        this.secretRow[randomIndex] = this.secret.get()[randomIndex];
     },
 
     guess() {
