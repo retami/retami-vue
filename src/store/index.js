@@ -1,7 +1,7 @@
 // store.js
 import {reactive} from 'vue'
-import Secret from "./../secret.js";
-import Colorpicker from "./../colorpicker.js";
+import Secret from "../utils/secret.js";
+import Colorpicker from "../utils/colorpicker.js";
 
 export const store = reactive({
 

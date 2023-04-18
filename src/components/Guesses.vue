@@ -1,6 +1,6 @@
 <script>
-import {store} from './store.js'
-import Colorpicker from "./../colorpicker.js";
+import {store} from '@/store/index.js'
+import Colorpicker from "../utils/colorpicker.js";
 
 export default {
     data() {

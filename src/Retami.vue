@@ -7,12 +7,15 @@ import Check from './components/Check.vue'
 import SecretRow from './components/SecretRow.vue'
 import Guesses from './components/Guesses.vue'
 import Info from './components/Info.vue'
+
 import HelpModal from './components/modal/HelpModal.vue'
 import QuitModal from './components/modal/QuitModal.vue'
 import WinModal from './components/modal/WinModal.vue'
 import LostModal from './components/modal/LostModal.vue'
 import OptionsModal from "./components/modal/OptionsModal.vue";
-import { store } from './components/store.js'
+
+import { store } from '@/store'
+
 store.init();
 </script>
 
