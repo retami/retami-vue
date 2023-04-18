@@ -2,7 +2,6 @@
 import {reactive} from 'vue'
 import Secret from "./../secret.js";
 import Colorpicker from "./../colorpicker.js";
-import { pushMultiple } from '@/helper';
 
 export const store = reactive({
 
@@ -77,18 +76,18 @@ export const store = reactive({
         this.guesses = [];
         for(let i = 0; i < this.options.numberOfGuesses; i++) {
             this.guesses.push({
-                guess: pushMultiple('transparent', this.options.numberOfPins),
-                feedback: pushMultiple('transparent', this.options.numberOfPins)
+                guess: Array(this.options.numberOfPins).fill('transparent'),
+                feedback: Array(this.options.numberOfPins).fill('transparent'),
             });
         }
     },
 
     clearSecretRow() {
-        this.secretRow = pushMultiple('transparent', this.options.numberOfPins);
+        this.secretRow = Array(this.options.numberOfPins).fill('transparent');
     },
 
     setSecretRow() {
-        this.secretRow = pushMultiple('black', this.options.numberOfPins);
+        this.secretRow = Array(this.options.numberOfPins).fill('black');
         this.secret.generateSecret(this.colors.slice(0, this.options.numberOfColors), this.options.numberOfPins);
     },
 
@@ -115,10 +114,15 @@ export const store = reactive({
     guess() {
         let guess = this.guesses[this.attemps].guess;
         let [blackPins, whitePins] = this.secret.checkGuess(guess);
-        this.guesses[this.attemps].feedback = pushMultiple('black', blackPins).
-                concat(pushMultiple('white', whitePins)).
-                concat(pushMultiple('transparent', this.options.numberOfPins - blackPins - whitePins));
+        let transparentPins = this.options.numberOfPins - blackPins - whitePins;
+
+        this.guesses[this.attemps].feedback = []
+            .concat(Array(blackPins).fill('black'))
+            .concat(Array(whitePins).fill('white'))
+            .concat(Array(transparentPins).fill('transparent'));
+
         this.attemps++;
+
         if(blackPins === this.options.numberOfPins) {
             this.openModal('Win');
             this.end();
